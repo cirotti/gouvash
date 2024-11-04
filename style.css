@@ -80,18 +80,34 @@ body, html {
     perspective: 1000px;
 }
 
+/* Efecto de movimiento para el título */
 .hero-content h1 {
     font-size: 4rem;
-    animation: pulsate 2s infinite;
+    animation: moveTitle 3s ease-in-out infinite;
     transform: translateZ(0);
     text-shadow: 0 0 5px #ff7f50, 0 0 10px #ff7f50, 0 0 20px #ff7f50;
 }
 
+/* Efecto de movimiento para la descripción */
 .hero-subtitle {
     font-size: 1.8rem;
     margin-top: 40px;
     opacity: 0.8;
+    animation: moveSubtitle 3s ease-in-out infinite;
 }
+
+/* Animación de movimiento para el título */
+@keyframes moveTitle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+/* Animación de movimiento para la descripción */
+@keyframes moveSubtitle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+}
+
 
 /* Botón */
 .hero-btn {
