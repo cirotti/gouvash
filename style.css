@@ -213,14 +213,6 @@ body, html {
     animation: slideIn 1s ease forwards;
 }
 
-.product img {
-    width: 100%;
-    height: 200px; /* Ajusta este valor según el tamaño que quieras para las imágenes */
-    object-fit: cover;
-    border-radius: 10px; /* Si deseas un borde redondeado */
-}
-
-
 /* Pie de página */
 .footer {
     background: rgba(0, 0, 0, 0.7);
