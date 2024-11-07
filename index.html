@@ -7,14 +7,122 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://i.postimg.cc/9MHqPY0B/84575-E31-A0-DA-4-C03-8673-A3-A4-A2-FC0-BC9.jpg" sizes="128x128" type="image/png">
+    <style>
+        /* Fondo galáctico */
+        .galaxy-background {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #0d1b2a, #1a2a6c, #3a539b);
+        }
+        
+        /* Capas de estrellas animadas */
+        .stars, .stars2, .stars3 {
+            position: absolute;
+            width: 2000px;
+            height: 2000px;
+            background: url("https://i.postimg.cc/qMLRmg08/kai-pilger-Ef6i-L87-v-OA-unsplash.jpg") repeat;
+            animation: animateStars 100s linear infinite;
+        }
+        .stars2 { animation-duration: 200s; opacity: 0.7; }
+        .stars3 { animation-duration: 300s; opacity: 0.5; }
+        
+        @keyframes animateStars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+        
+        /* Animación de cometas */
+        .comet {
+            position: absolute;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(45deg, #fff, rgba(255, 255, 255, 0));
+            box-shadow: 0 0 15px #fff;
+            border-radius: 50%;
+            animation: moveComet 5s linear infinite;
+        }
+        @keyframes moveComet {
+            from { transform: translate(-50vw, -50vh); opacity: 1; }
+            to { transform: translate(50vw, 50vh); opacity: 0; }
+        }
+
+        /* Encabezado animado */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+        .animated-title {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: titleGlow 2s infinite alternate;
+        }
+        .hero-btn {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border-radius: 25px;
+            box-shadow: 0 0 15px rgba(255, 75, 43, 0.4);
+            animation: btnFloat 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px #ff416c, 0 0 20px #ff416c; }
+            to { text-shadow: 0 0 20px #ff4b2b, 0 0 30px #ff4b2b; }
+        }
+        @keyframes btnFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Animación de texto de "Productos destacados" */
+        .section-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: titleSwing 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes titleSwing {
+            0% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(-10px); }
+        }
+        
+        /* Efecto de rotación 3D en los productos */
+        .product {
+            perspective: 1000px;
+            transition: transform 0.4s;
+        }
+        .product:hover {
+            transform: rotateY(15deg) scale(1.05);
+        }
+    </style>
+    <script>
+        // Función para abrir WhatsApp con un mensaje personalizado
+        function enviarMensajeWhatsApp(producto) {
+            const numeroTelefono = "56945518384"; // Reemplaza con el número de WhatsApp del vendedor
+            const mensaje = `Hola, me gustaría comprar el producto: ${producto}`;
+            const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </head>
 <body>
-    <!-- Contenedor principal con fondo galáctico -->
     <div class="galaxy-background">
-        <!-- Capa de estrellas -->
+        <!-- Capas de estrellas y cometas -->
         <div class="stars"></div>
         <div class="stars2"></div>
         <div class="stars3"></div>
+        <div class="comet" style="top: 20%; left: 10%;"></div>
+        <div class="comet" style="top: 40%; left: 80%;"></div>
+        <div class="comet" style="top: 60%; left: 30%;"></div>
 
         <!-- Encabezado animado -->
         <header class="hero">
@@ -25,7 +133,6 @@
                 <a href="" class="hero-btn">Contactanos</a>
             </div>
         </header>
-
         <!-- Sección de productos destacados -->
         <section id="productos" class="productos">
             <h2 class="section-title">Productos destacados</h2>
@@ -34,19 +141,19 @@
                     <img src="https://i.postimg.cc/k4Hvdbg6/eadc58b7f06204b8c6c39b9c4f5b45de-1.jpg" alt="Funko Pop">
                     <h3>Funko Pop</h3>
                     <p>Figura coleccionable de edición limitada.</p>
-                    <button class="add-to-cart-btn">Agregar al carrito</button>
+                    <button class="add-to-cart-btn" onclick="enviarMensajeWhatsApp('Funko Pop')">Agregar al carrito</button>
                 </div>
                 <div class="product">
                     <img src="https://i.postimg.cc/rm7xH2f5/R-1.jpg" alt="Perfume">
                     <h3>Perfume Exclusivo</h3>
                     <p>Fragancia única y duradera.</p>
-                    <button class="add-to-cart-btn">Agregar al carrito</button>
+                    <button class="add-to-cart-btn" onclick="enviarMensajeWhatsApp('Perfume Exclusivo')">Agregar al carrito</button>
                 </div>
                 <div class="product">
                     <img src="https://i.postimg.cc/zDL9HwWQ/web-image-04-1.jpg" alt="Gas Pimienta">
                     <h3>Gas Pimienta</h3>
                     <p>Para tu seguridad y protección personal.</p>
-                    <button class="add-to-cart-btn">Agregar al carrito</button>
+                    <button class="add-to-cart-btn" onclick="enviarMensajeWhatsApp('Gas Pimienta')">Agregar al carrito</button>
                 </div>
             </div>
         </section>
